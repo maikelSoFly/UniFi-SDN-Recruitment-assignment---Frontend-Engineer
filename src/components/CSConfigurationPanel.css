@@ -1,0 +1,83 @@
+.cp-container {
+  float: right;
+  width: 250px;
+  height: 100%;
+  padding: 20px 10px 20px 10px;
+  box-sizing: border-box;
+  text-align: left;
+  background: linear-gradient(rgba(32, 40, 47), black);
+}
+
+.cp-label {
+  color: rgba(132, 137, 146)
+}
+
+label.dropdown select {
+	padding: 10px 42px 10px 10px;
+	background: none;
+	color: white;
+	border: 2px solid rgba(50, 57, 63);
+	border-radius: 0;
+	display: inline-block;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	cursor: pointer;
+  outline: none;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+label.dropdown select:-moz-focusring {
+	color: transparent;
+	text-shadow: 0 0 0 #444;
+}
+label.dropdown select::-ms-expand {
+	display: none;
+}
+label.dropdown:before {
+	content: '';
+	right: 5px;
+	top: -7px;
+	width: 30px;
+	height: 33px;
+	background: none;
+	position: absolute;
+	pointer-events: none;
+  display: block;
+  
+}
+label.dropdown { position: relative; }
+label.dropdown:after {
+  content: url();
+  background-image: url("../arrow-down.png");
+  background-size: cover;
+
+	right: 15px;
+	top: 3.5px;
+	
+	position: absolute;
+	pointer-events: none;
+  width: 15px;
+  height: 15px;
+	
+
+}
+@media screen\0 {
+	label.dropdown:after {
+		width: 38px;
+		text-indent: 15px;
+        right: 0;
+	}
+}
+@media screen and (min--moz-device-pixel-ratio:0) {
+	label.dropdown select { padding-right: 40px; }
+	label.dropdown:before { right: 6px; }
+	label.dropdown:after {
+		text-indent: 14px;
+		right: 6px;
+		top: -5px;
+		width: 36px;
+	}
+}
