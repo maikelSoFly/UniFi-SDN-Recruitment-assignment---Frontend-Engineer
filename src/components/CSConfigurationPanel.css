@@ -9,7 +9,9 @@
 }
 
 .cp-label {
-  color: rgba(132, 137, 146)
+	color: rgba(132, 137, 146);
+	font-size: 13px;
+	font-weight: bolder;
 }
 
 label.dropdown select {

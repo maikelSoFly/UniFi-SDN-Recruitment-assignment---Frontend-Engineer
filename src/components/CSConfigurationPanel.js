@@ -27,6 +27,7 @@ class CSConfigurationPanel extends Component {
     return (
       <div className='cp-container'>
         <div className='cp-label'>TX Power</div>
+
         <label className="dropdown">
           <select value={this.state.txPowerValue} onChange={this.handleChange}>
             <option value='4'>High(4dBm)</option>
@@ -34,6 +35,20 @@ class CSConfigurationPanel extends Component {
             <option value='-16'>Low(-16dBm)</option>
           </select>
         </label>
+        <div className='cp-label' style={{ marginTop: '5px' }}>Radio</div>
+
+        <tbody>
+          <tr>
+            <td><input type="radio" name="site_name"
+              value={result.SITE_NAME}
+              checked={this.state.site === result.SITE_NAME}
+              onChange={this.onSiteChanged} />{result.SITE_NAME}</td>
+            <td><input type="radio" name="address"
+              value={result.ADDRESS}
+              checked={this.state.address === result.ADDRESS}
+              onChange={this.onAddressChanged} />{result.ADDRESS}</td>
+          </tr>
+        </tbody>
       </div >
     )
   }
