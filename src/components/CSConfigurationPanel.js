@@ -1,23 +1,36 @@
 import React, { Component } from 'react'
 
 import './CSConfigurationPanel.css'
+import './CSRadioButton.scss'
 
 
 class CSConfigurationPanel extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      txPowerValue: '4',
+      conf: {
+        txPower: '4',
+        frequency: '2400'
+      },
+
     }
   }
 
 
 
-  handleChange = event => {
-    this.setState({ txPowerValue: event.target.value }, () => {
-      this.props.configurationChangedHandler({ txPower: this.state.txPowerValue })
+  onDropdownChange = event => {
+    this.setState({ conf: { ...this.state.conf, txPower: event.target.value } }, () => {
+      this.props.configurationChangedHandler(this.state.conf)
     })
 
+  }
+
+
+
+  onRadioChanged = event => {
+    this.setState({ conf: { ...this.state.conf, frequency: event.target.value } }, () => {
+      this.props.configurationChangedHandler(this.state.conf)
+    })
   }
 
 
@@ -29,26 +42,58 @@ class CSConfigurationPanel extends Component {
         <div className='cp-label'>TX Power</div>
 
         <label className="dropdown">
-          <select value={this.state.txPowerValue} onChange={this.handleChange}>
+          <select value={this.state.txPowerValue} onChange={this.onDropdownChange}>
             <option value='4'>High(4dBm)</option>
             <option value='-6'>Medium(-6dBm)</option>
             <option value='-16'>Low(-16dBm)</option>
           </select>
         </label>
-        <div className='cp-label' style={{ marginTop: '5px' }}>Radio</div>
+        <div className='cp-label' style={{ margin: '5px 0px 5px 0px' }}>Radio</div>
 
-        <tbody>
-          <tr>
-            <td><input type="radio" name="site_name"
-              value={result.SITE_NAME}
-              checked={this.state.site === result.SITE_NAME}
-              onChange={this.onSiteChanged} />{result.SITE_NAME}</td>
-            <td><input type="radio" name="address"
-              value={result.ADDRESS}
-              checked={this.state.address === result.ADDRESS}
-              onChange={this.onAddressChanged} />{result.ADDRESS}</td>
-          </tr>
-        </tbody>
+
+        <input
+          type="radio"
+          id="q_yes"
+          name="q"
+          value="2400"
+          checked={this.state.conf.frequency === '2400'}
+          onChange={this.onRadioChanged}
+
+        />
+
+        <label htmlFor="q_yes">
+          <svg shapeRendering="optimizeQuality" preserveAspectRatio="xMidYMid meet" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+            <circle className="outer" fill="#BDBDBD" cx="32" cy="32" r="32"></circle>
+            <circle className="inner" fill="#FFFFFF" cx="32" cy="32" r="28"></circle>
+          </svg>
+          <span className='cp-radio-label'> 2.4 GHz</span>
+        </label>
+
+
+        <br />
+        <div style={{ marginTop: '3px' }}></div>
+
+        <input
+          type="radio"
+          id="q_no"
+          name="q"
+          value="5000"
+          checked={this.state.conf.frequency === '5000'}
+          onChange={this.onRadioChanged} />
+        <label htmlFor="q_no">
+          <svg shapeRendering="optimizeQuality" preserveAspectRatio="xMidYMid meet" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+            <circle className="outer" fill="#BDBDBD" cx="32" cy="32" r="32"></circle>
+            <circle className="inner" fill="#FFFFFF" cx="32" cy="32" r="28"></circle>
+          </svg>
+          <span className='cp-radio-label'> 5 GHz</span>
+        </label >
+
+
+
+
+
+
+
       </div >
     )
   }
